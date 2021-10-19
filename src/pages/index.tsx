@@ -1,3 +1,6 @@
+import { followerData, metricData } from "src/data"
+
+import { Brand } from "src/types"
 import Head from "next/head"
 import Link from "next/link"
 import { Logo } from "src/components/logo"
@@ -6,6 +9,10 @@ import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
 
 const Home: NextPage = () => {
+  const totalFollowers = followerData
+    .map((brand) => brand.value)
+    .reduce((acc, cur) => acc + cur)
+
   return (
     <>
       <Head>
@@ -17,33 +24,29 @@ const Home: NextPage = () => {
       <main>
         <header>
           <h1>Social Media Dashboard</h1>
-          <p>Total Followers: 23,004</p>
+          <p>Total Followers: {totalFollowers}</p>
         </header>
-        <SocialFollowersCard
-          brand="facebook"
-          socialLink={<Link href="/">@nathanf</Link>}
-          value={1987}
-          changePercent={12}
-        />
-        <SocialFollowersCard
-          brand="twitter"
-          socialLink={<Link href="/">@nathanf</Link>}
-          value={1044}
-          changePercent={99}
-        />
-        <SocialFollowersCard
-          brand="instagram"
-          socialLink={<Link href="/">@nathanf</Link>}
-          value={11000}
-          changePercent={1099}
-        />
+        {followerData.map((f) => (
+          <SocialFollowersCard
+            key={f.brand}
+            brand={f.brand}
+            username={f.username}
+            value={f.value}
+            change={f.change}
+            metric={f.metric}
+            period={f.period}
+          />
+        ))}
         <h2>Overview - Today</h2>
-        <MetricCard
-          metric="Page Views"
-          brand="facebook"
-          value={87}
-          change={3}
-        />
+        {metricData.map((m) => (
+          <MetricCard
+            key={`${m.brand}-${m.metric}`}
+            metric={m.metric}
+            brand={m.brand}
+            value={m.value}
+            changePercent={m.changePercent}
+          />
+        ))}
       </main>
     </>
   )
@@ -51,29 +54,25 @@ const Home: NextPage = () => {
 
 export default Home
 
-type Brand = "facebook" | "twitter" | "instagram" | "youtube"
-
 type SocialFollowersCardProps = {
   brand: Brand
-  socialLink: JSX.Element
-  logo?: JSX.Element
+  username: string
   value: number
   metric?: string
-  changePercent: number
+  change: number
   period?: string
 }
 function SocialFollowersCard({
   brand,
-  socialLink,
-  logo,
+  username,
   value,
   metric = "followers",
-  changePercent,
+  change,
   period = "today",
 }: SocialFollowersCardProps): JSX.Element {
   const headingId = useId()
 
-  const changeDirection = changePercent >= 0 ? "up" : "down"
+  const changeDirection = change >= 0 ? "up" : "down"
   return (
     <article aria-labelledby={headingId}>
       <header>
@@ -81,13 +80,15 @@ function SocialFollowersCard({
           {brand}
         </h2>
         <Logo brand={brand} aria-hidden />
-        <p>{socialLink}</p>
+        <p>
+          <Link href="/">{username}</Link>
+        </p>
       </header>
       <p>
         <span>{value}</span> <span>{metric}</span>
       </p>
       <footer>
-        <span>{changeDirection}</span> {changePercent} {period}
+        <span>{changeDirection}</span> {Math.abs(change)} {period}
       </footer>
     </article>
   )
@@ -97,28 +98,28 @@ type MetricCardProps = {
   metric: string
   brand: Brand
   value: number
-  change: number
+  changePercent: number
 }
 function MetricCard({
   metric,
   brand,
   value,
-  change,
+  changePercent,
 }: MetricCardProps): JSX.Element {
   const headingId = useId()
-  const changeDirection = change >= 0 ? "up" : "down"
+  const changeDirection = changePercent >= 0 ? "up" : "down"
 
   return (
     <article aria-labelledby={headingId}>
       <h3 id={headingId}>
         <span>{metric}</span>
-        <span className={screenReaderOnly}>{brand}</span>
+        <span className={screenReaderOnly}> {brand}</span>
       </h3>
       <Logo brand={brand} aria-hidden />
       <p>{value}</p>
       <p>
         <span>{changeDirection}</span>
-        <span>{change}%</span>
+        <span>{Math.abs(changePercent)}%</span>
       </p>
     </article>
   )
