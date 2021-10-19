@@ -2,6 +2,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { Logo } from "src/components/logo"
 import type { NextPage } from "next"
+import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
 
 const Home: NextPage = () => {
@@ -76,7 +77,9 @@ function SocialFollowersCard({
   return (
     <article aria-labelledby={headingId}>
       <header>
-        <h2 id={headingId}>{brand}</h2>
+        <h2 id={headingId} className={screenReaderOnly}>
+          {brand}
+        </h2>
         <Logo brand={brand} aria-hidden />
         <p>{socialLink}</p>
       </header>
@@ -109,7 +112,7 @@ function MetricCard({
     <article aria-labelledby={headingId}>
       <h3 id={headingId}>
         <span>{metric}</span>
-        <span>{brand}</span>
+        <span className={screenReaderOnly}>{brand}</span>
       </h3>
       <Logo brand={brand} aria-hidden />
       <p>{value}</p>
