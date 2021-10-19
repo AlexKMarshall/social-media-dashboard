@@ -1,5 +1,8 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import Head from "next/head"
+import Link from "next/link"
+import { Logo } from "src/components/logo"
+import type { NextPage } from "next"
+import { useId } from "@react-aria/utils"
 
 const Home: NextPage = () => {
   return (
@@ -11,10 +14,105 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>Hello World</h1>
+        <header>
+          <h1>Social Media Dashboard</h1>
+          <p>Total Followers: 23,004</p>
+        </header>
+        <SocialFollowersCard
+          name="Facebook"
+          socialLink={<Link href="/">@nathanf</Link>}
+          value={1987}
+          changePercent={12}
+        />
+        <SocialFollowersCard
+          name="Twitter"
+          socialLink={<Link href="/">@nathanf</Link>}
+          value={1044}
+          changePercent={99}
+        />
+        <SocialFollowersCard
+          name="Instagram"
+          socialLink={<Link href="/">@nathanf</Link>}
+          value={11000}
+          changePercent={1099}
+        />
+        <h2>Overview - Today</h2>
+        <MetricCard
+          metric="Page Views"
+          brand="Facebook"
+          value={87}
+          change={3}
+        />
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
+
+type SocialFollowersCardProps = {
+  name: string
+  socialLink: JSX.Element
+  logo?: JSX.Element
+  value: number
+  metric?: string
+  changePercent: number
+  period?: string
+}
+function SocialFollowersCard({
+  name: brand,
+  socialLink,
+  logo,
+  value,
+  metric = "followers",
+  changePercent,
+  period = "today",
+}: SocialFollowersCardProps): JSX.Element {
+  const headingId = useId()
+
+  const changeDirection = changePercent >= 0 ? "up" : "down"
+  return (
+    <article aria-labelledby={headingId}>
+      <header>
+        <h2 id={headingId}>{brand}</h2>
+        <p>{socialLink}</p>
+      </header>
+      <p>
+        <span>{value}</span> <span>{metric}</span>
+      </p>
+      <footer>
+        <span>{changeDirection}</span> {changePercent} {period}
+      </footer>
+    </article>
+  )
+}
+
+type MetricCardProps = {
+  metric: string
+  brand: string
+  value: number
+  change: number
+}
+function MetricCard({
+  metric,
+  brand,
+  value,
+  change,
+}: MetricCardProps): JSX.Element {
+  const headingId = useId()
+  const changeDirection = change >= 0 ? "up" : "down"
+
+  return (
+    <article aria-labelledby={headingId}>
+      <h3 id={headingId}>
+        <span>{metric}</span>
+        <span>{brand}</span>
+      </h3>
+      <p>{value}</p>
+      <p>
+        <span>{changeDirection}</span>
+        <span>{change}%</span>
+      </p>
+    </article>
+  )
+}
