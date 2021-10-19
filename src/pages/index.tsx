@@ -19,19 +19,19 @@ const Home: NextPage = () => {
           <p>Total Followers: 23,004</p>
         </header>
         <SocialFollowersCard
-          name="Facebook"
+          brand="facebook"
           socialLink={<Link href="/">@nathanf</Link>}
           value={1987}
           changePercent={12}
         />
         <SocialFollowersCard
-          name="Twitter"
+          brand="twitter"
           socialLink={<Link href="/">@nathanf</Link>}
           value={1044}
           changePercent={99}
         />
         <SocialFollowersCard
-          name="Instagram"
+          brand="instagram"
           socialLink={<Link href="/">@nathanf</Link>}
           value={11000}
           changePercent={1099}
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
         <h2>Overview - Today</h2>
         <MetricCard
           metric="Page Views"
-          brand="Facebook"
+          brand="facebook"
           value={87}
           change={3}
         />
@@ -50,8 +50,10 @@ const Home: NextPage = () => {
 
 export default Home
 
+type Brand = "facebook" | "twitter" | "instagram" | "youtube"
+
 type SocialFollowersCardProps = {
-  name: string
+  brand: Brand
   socialLink: JSX.Element
   logo?: JSX.Element
   value: number
@@ -60,7 +62,7 @@ type SocialFollowersCardProps = {
   period?: string
 }
 function SocialFollowersCard({
-  name: brand,
+  brand,
   socialLink,
   logo,
   value,
@@ -75,6 +77,7 @@ function SocialFollowersCard({
     <article aria-labelledby={headingId}>
       <header>
         <h2 id={headingId}>{brand}</h2>
+        <Logo brand={brand} aria-hidden />
         <p>{socialLink}</p>
       </header>
       <p>
@@ -89,7 +92,7 @@ function SocialFollowersCard({
 
 type MetricCardProps = {
   metric: string
-  brand: string
+  brand: Brand
   value: number
   change: number
 }
@@ -108,6 +111,7 @@ function MetricCard({
         <span>{metric}</span>
         <span>{brand}</span>
       </h3>
+      <Logo brand={brand} aria-hidden />
       <p>{value}</p>
       <p>
         <span>{changeDirection}</span>
