@@ -1,4 +1,4 @@
-import { createGlobalTheme, globalStyle } from "@vanilla-extract/css"
+import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css"
 
 export const themeVars = createGlobalTheme(":root", {
   typography: {
@@ -25,10 +25,31 @@ export const themeVars = createGlobalTheme(":root", {
         "linear-gradient(225deg, hsl(329, 70%, 58%) 0%, hsl(5, 77%, 71%) 50.91%, hsl(37, 97%, 70%) 100%)",
       youtube: "hsl(348, 97%, 39%)",
     },
+    background: {
+      main: "hsl(0, 0%, 100%)",
+      card: "",
+      decoration: "hsl(225, 100%, 98%)",
+    },
   },
 })
 
 globalStyle("html", {
   fontFamily: "Inter, sans-serif",
   color: themeVars.color.text.normal,
+})
+
+globalStyle("body", {
+  position: "relative",
+  backgroundColor: themeVars.color.background.main,
+})
+
+globalStyle("body::before", {
+  content: "",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  height: "25vh",
+  backgroundColor: themeVars.color.background.decoration,
+  zIndex: -1,
 })
