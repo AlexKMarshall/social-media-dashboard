@@ -51,7 +51,7 @@ export function SocialFollowersCard({
       </p>
       <footer className={styles.footer({ direction: changeDirection })}>
         <span className={screenReaderOnly}>{changeDirection}</span>
-        <Chevron direction={changeDirection} />
+        <Chevron direction={changeDirection} aria-hidden />
         {Math.abs(change)} {period}
       </footer>
     </article>
