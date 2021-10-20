@@ -1,17 +1,8 @@
-import { followerData, metricData } from "src/data"
-import { fullWidth, grid } from "src/styles/layout.css"
-
+import { Dashboard } from "src/components/dashboard"
 import Head from "next/head"
-import { MetricCard } from "src/components/metric-card"
 import type { NextPage } from "next"
-import { SocialFollowersCard } from "src/components/social-followers-card"
-import { ThemeToggle } from "src/components/theme-toggle"
 
 const Home: NextPage = () => {
-  const totalFollowers = followerData
-    .map((brand) => brand.value)
-    .reduce((acc, cur) => acc + cur)
-
   return (
     <>
       <Head>
@@ -20,34 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={grid}>
-        <header className={fullWidth}>
-          <h1>Social Media Dashboard</h1>
-          <p>Total Followers: {totalFollowers}</p>
-          <ThemeToggle />
-        </header>
-        {followerData.map((f) => (
-          <SocialFollowersCard
-            key={f.brand}
-            brand={f.brand}
-            username={f.username}
-            value={f.value}
-            change={f.change}
-            metric={f.metric}
-            period={f.period}
-          />
-        ))}
-        <h2 className={fullWidth}>Overview - Today</h2>
-        {metricData.map((m) => (
-          <MetricCard
-            key={`${m.brand}-${m.metric}`}
-            metric={m.metric}
-            brand={m.brand}
-            value={m.value}
-            changePercent={m.changePercent}
-          />
-        ))}
-      </main>
+      <Dashboard />
     </>
   )
 }
