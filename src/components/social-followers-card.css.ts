@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css"
 
 export const card = style([
   box,
-  stack,
+  stack({ size: "small" }),
   {
     position: "relative",
     overflow: "hidden",

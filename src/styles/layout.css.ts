@@ -1,3 +1,4 @@
+import { recipe } from "@vanilla-extract/recipes"
 import { style } from "@vanilla-extract/css"
 
 export const box = style({
@@ -5,10 +6,26 @@ export const box = style({
   backgroundColor: "hsl(0, 0%, 95%)",
 })
 
-export const stack = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: "1.5rem",
+export const stack = recipe({
+  base: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  variants: {
+    size: {
+      small: {
+        gap: "1.5rem",
+      },
+      large: {
+        gap: "3rem",
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "small",
+  },
 })
 
 export const grid = style({
