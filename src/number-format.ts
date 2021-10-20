@@ -1,25 +1,16 @@
-type Options = {
-  exact?: boolean
-}
-
 const million = 1_000_000
 const thousand = 1000
 
-export function formatNumber(
-  num: number,
-  { exact = true }: Options = {}
-): string {
-  if (exact) return num.toLocaleString()
-
+export function formatNumber(num: number): string {
   if (num >= 10 * million) {
     const numericPart = Math.floor(num / million)
-    const suffix = "M"
-    return `${formatNumber(numericPart, { exact: true })}${suffix}`
+    const suffix = "m"
+    return `${numericPart}${suffix}`
   }
   if (num >= 10 * thousand) {
     const numericPart = Math.floor(num / thousand)
-    const suffix = "K"
-    return `${formatNumber(numericPart, { exact: true })}${suffix}`
+    const suffix = "k"
+    return `${numericPart}${suffix}`
   }
-  return num.toLocaleString()
+  return num.toString()
 }

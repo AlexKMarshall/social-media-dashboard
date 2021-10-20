@@ -19,7 +19,7 @@ export function Dashboard() {
       <header className={header}>
         <div>
           <h1 className={h1}>Social Media Dashboard</h1>
-          <p>Total Followers: {formatNumber(totalFollowers)}</p>
+          <p>Total Followers: {totalFollowers.toLocaleString()}</p>
         </div>
         <ThemeToggle />
       </header>

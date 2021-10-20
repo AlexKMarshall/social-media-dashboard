@@ -1,6 +1,7 @@
 import { Brand } from "src/types"
 import { Logo } from "src/components/logo"
 import { card } from "./metric-card.css"
+import { formatNumber } from "src/number-format"
 import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
 
@@ -26,7 +27,7 @@ export function MetricCard({
         <span className={screenReaderOnly}> {brand}</span>
       </h3>
       <Logo brand={brand} aria-hidden />
-      <p>{value}</p>
+      <p>{formatNumber(value)}</p>
       <p>
         <span>{changeDirection}</span>
         <span>{Math.abs(changePercent)}%</span>

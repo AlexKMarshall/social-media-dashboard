@@ -1,7 +1,10 @@
+import * as styles from "./social-followers-card.css"
+
 import { Brand } from "src/types"
+import { Chevron } from "./chevron"
 import Link from "next/link"
 import { Logo } from "src/components/logo"
-import { card } from "./social-followers-card.css"
+import { formatNumber } from "src/number-format"
 import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
 
@@ -23,23 +26,33 @@ export function SocialFollowersCard({
 }: Props): JSX.Element {
   const headingId = useId()
 
+  const formattedValue = formatNumber(value)
+
   const changeDirection = change >= 0 ? "up" : "down"
   return (
-    <article aria-labelledby={headingId} className={card}>
-      <header>
+    <article
+      aria-labelledby={headingId}
+      className={styles.brandCard({ brand })}
+    >
+      <header className={styles.header}>
         <h2 id={headingId} className={screenReaderOnly}>
           {brand}
         </h2>
         <Logo brand={brand} aria-hidden />
         <p>
-          <Link href="/">{username}</Link>
+          <Link href="/">
+            <a className={styles.socialHandle}>{username}</a>
+          </Link>
         </p>
       </header>
-      <p>
-        <span>{value}</span> <span>{metric}</span>
+      <p className={styles.followers}>
+        <span className={styles.value}>{formattedValue}</span>
+        <span className={styles.metric}>{metric}</span>
       </p>
-      <footer>
-        <span>{changeDirection}</span> {Math.abs(change)} {period}
+      <footer className={styles.footer({ direction: changeDirection })}>
+        <span className={screenReaderOnly}>{changeDirection}</span>
+        <Chevron direction={changeDirection} />
+        {Math.abs(change)} {period}
       </footer>
     </article>
   )
