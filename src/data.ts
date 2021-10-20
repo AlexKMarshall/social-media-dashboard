@@ -29,7 +29,7 @@ export const followerData: SocialFollower[] = [
   {
     brand: "instagram",
     username: "@realnathanf",
-    value: 11000,
+    value: 11516,
     metric: "followers",
     change: 1099,
     period: "today",

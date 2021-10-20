@@ -1,10 +1,11 @@
+import { dashboard, h1, h2, header } from "./dashboard.css"
 import { followerData, metricData } from "src/data"
 import { fullWidth, grid, stack } from "src/styles/layout.css"
 
 import { MetricCard } from "./metric-card"
 import { SocialFollowersCard } from "./social-followers-card"
 import { ThemeToggle } from "./theme-toggle"
-import { dashboard } from "./dashboard.css"
+import { formatNumber } from "src/number-format"
 import { useId } from "@react-aria/utils"
 
 export function Dashboard() {
@@ -15,9 +16,11 @@ export function Dashboard() {
 
   return (
     <main className={dashboard}>
-      <header className={fullWidth}>
-        <h1>Social Media Dashboard</h1>
-        <p>Total Followers: {totalFollowers}</p>
+      <header className={header}>
+        <div>
+          <h1 className={h1}>Social Media Dashboard</h1>
+          <p>Total Followers: {formatNumber(totalFollowers)}</p>
+        </div>
         <ThemeToggle />
       </header>
       <div className={grid}>
@@ -37,7 +40,9 @@ export function Dashboard() {
         className={stack({ size: "small" })}
         aria-labelledby={overviewHeadingId}
       >
-        <h2 id={overviewHeadingId}>Overview - Today</h2>
+        <h2 id={overviewHeadingId} className={h2}>
+          Overview - Today
+        </h2>
         <div className={grid}>
           {metricData.map((m) => (
             <MetricCard
