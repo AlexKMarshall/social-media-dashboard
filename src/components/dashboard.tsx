@@ -1,10 +1,10 @@
 import { followerData, metricData } from "src/data"
-import { fullWidth, grid } from "src/styles/layout.css"
 
 import { MetricCard } from "./metric-card"
 import { SocialFollowersCard } from "./social-followers-card"
 import { ThemeToggle } from "./theme-toggle"
 import { dashboard } from "./dashboard.css"
+import { fullWidth } from "src/styles/layout.css"
 
 export function Dashboard() {
   const totalFollowers = followerData
