@@ -7,7 +7,7 @@ export const card = style([
   box,
   {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
+    gridTemplateColumns: "repeat(2, auto)",
     gap: "1.5rem",
     borderRadius: "5px",
   },
