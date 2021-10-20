@@ -5,6 +5,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { Logo } from "src/components/logo"
 import type { NextPage } from "next"
+import { ThemeToggle } from "src/components/theme-toggle"
 import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
 
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
         <header>
           <h1>Social Media Dashboard</h1>
           <p>Total Followers: {totalFollowers}</p>
+          <ThemeToggle />
         </header>
         {followerData.map((f) => (
           <SocialFollowersCard
