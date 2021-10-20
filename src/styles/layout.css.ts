@@ -20,3 +20,11 @@ export const grid = style({
 export const fullWidth = style({
   gridColumn: "1 / -1",
 })
+
+export const center = style({
+  padding: "1.5rem",
+  maxWidth: "1110px",
+  boxSizing: "content-box",
+  marginLeft: "auto",
+  marginRight: "auto",
+})

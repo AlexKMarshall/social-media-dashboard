@@ -4,6 +4,7 @@ import { fullWidth, grid } from "src/styles/layout.css"
 import { MetricCard } from "./metric-card"
 import { SocialFollowersCard } from "./social-followers-card"
 import { ThemeToggle } from "./theme-toggle"
+import { dashboard } from "./dashboard.css"
 
 export function Dashboard() {
   const totalFollowers = followerData
@@ -11,7 +12,7 @@ export function Dashboard() {
     .reduce((acc, cur) => acc + cur)
 
   return (
-    <main className={grid}>
+    <main className={dashboard}>
       <header className={fullWidth}>
         <h1>Social Media Dashboard</h1>
         <p>Total Followers: {totalFollowers}</p>
