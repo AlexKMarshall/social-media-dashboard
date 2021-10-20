@@ -11,7 +11,7 @@ export const card = style([
     gridTemplateColumns: "repeat(2, auto)",
     gap: "1.5rem",
     borderRadius: "5px",
-    transition: "filter 250ms ease-in-out",
+    transitionProperty: "filter",
 
     selectors: {
       "&:hover, &:focus-within": {

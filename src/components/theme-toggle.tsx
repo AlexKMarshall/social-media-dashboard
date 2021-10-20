@@ -1,3 +1,4 @@
+import { slider, themeToggle } from "./theme-toggle.css"
 import { useMemo, useState } from "react"
 
 function useToggle(initialValue = false) {
@@ -13,8 +14,14 @@ export function ThemeToggle(): JSX.Element {
   const { state: isPressed, toggle } = useToggle()
 
   return (
-    <button aria-pressed={isPressed} onClick={toggle} type="button">
+    <button
+      aria-pressed={isPressed}
+      onClick={toggle}
+      type="button"
+      className={themeToggle}
+    >
       Dark Mode
+      <span className={slider} aria-hidden />
     </button>
   )
 }

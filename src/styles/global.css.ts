@@ -31,6 +31,10 @@ export const themeVars = createGlobalTheme(":root", {
       decoration: "hsl(225, 100%, 98%)",
     },
   },
+  animation: {
+    transitionDuration: "250ms",
+    transitionTimingFunction: "ease-in-out",
+  },
 })
 
 globalStyle("html", {
@@ -52,4 +56,9 @@ globalStyle("body::before", {
   height: "25vh",
   backgroundColor: themeVars.color.background.decoration,
   zIndex: -1,
+})
+
+globalStyle("*, *::after, *::before", {
+  transitionDuration: themeVars.animation.transitionDuration,
+  transitionTimingFunction: themeVars.animation.transitionTimingFunction,
 })
