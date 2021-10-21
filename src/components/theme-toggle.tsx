@@ -14,8 +14,7 @@ export function ThemeToggle(): JSX.Element {
   const { state: isPressed, toggle } = useToggle(true)
 
   useEffect(() => {
-    const body = document.querySelector("body")
-    body?.setAttribute("data-user-theme", isPressed ? "dark" : "light")
+    document.documentElement.dataset.userTheme = isPressed ? "dark" : "light"
   }, [isPressed])
 
   return (

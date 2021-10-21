@@ -1,4 +1,5 @@
 import {
+  assignVars,
   createGlobalTheme,
   createThemeContract,
   globalStyle,
@@ -41,39 +42,53 @@ const themeTokens = createThemeContract({
   },
 })
 
-createGlobalTheme(":root", themeTokens, {
-  color: {
-    text: {
-      bold: "hsl(230, 17%, 14%)",
-      normal: "hsl(230, 12%, 44%)",
-      muted: "hsl(230, 22%, 74%)",
+const lightTheme = {
+  vars: assignVars(themeTokens, {
+    color: {
+      text: {
+        bold: "hsl(230, 17%, 14%)",
+        normal: "hsl(230, 12%, 44%)",
+        muted: "hsl(230, 22%, 74%)",
+      },
+      background: {
+        main: "hsl(0, 0%, 100%)",
+        card: "hsl(0, 0%, 95%)",
+        cardHoverBrightness: "0.9",
+        decoration: "hsl(225, 100%, 98%)",
+      },
+      divider: "hsl(230, 19%, 60%)",
     },
-    background: {
-      main: "hsl(0, 0%, 100%)",
-      card: "hsl(0, 0%, 95%)",
-      cardHoverBrightness: "0.9",
-      decoration: "hsl(225, 100%, 98%)",
+  }),
+}
+
+const darkTheme = {
+  vars: assignVars(themeTokens, {
+    color: {
+      text: {
+        bold: "hsl(0, 0%, 100%)",
+        normal: "hsl(228, 34%, 66%)",
+        muted: "hsl(228, 34%, 66%)",
+      },
+      background: {
+        main: "hsl(230, 17%, 14%)",
+        card: "hsl(228, 28%, 20%)",
+        cardHoverBrightness: "1.3",
+        decoration: "hsl(232, 19%, 15%)",
+      },
+      divider: "hsla(228, 25%, 27%)",
     },
-    divider: "hsl(230, 19%, 60%)",
+  }),
+}
+
+globalStyle(":root", lightTheme)
+
+globalStyle(":root:not([data-user-theme=light])", {
+  "@media": {
+    "screen and (prefers-color-scheme: dark)": darkTheme,
   },
 })
 
-createGlobalTheme("body[data-user-theme=dark]", themeTokens, {
-  color: {
-    text: {
-      bold: "hsl(0, 0%, 100%)",
-      normal: "hsl(228, 34%, 66%)",
-      muted: "hsl(228, 34%, 66%)",
-    },
-    background: {
-      main: "hsl(230, 17%, 14%)",
-      card: "hsl(228, 28%, 20%)",
-      cardHoverBrightness: "1.3",
-      decoration: "hsl(232, 19%, 15%)",
-    },
-    divider: "hsla(228, 25%, 27%)",
-  },
-})
+globalStyle(":root[data-user-theme=dark]", darkTheme)
 
 export const designTokens = {
   ...mainTokens,
