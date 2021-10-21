@@ -10,9 +10,9 @@ export function Chevron({
   ...props
 }: Props): JSX.Element {
   return (
-    <div {...props} className={`${chevron} ${className}`}>
+    <span {...props} className={`${chevron} ${className}`}>
       {chevronIcons[direction]}
-    </div>
+    </span>
   )
 }
 

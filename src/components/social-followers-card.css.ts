@@ -1,10 +1,10 @@
+import * as brandTheme from "src/styles/brand.css"
+
 import { box, stack } from "src/styles/layout.css"
 import { createVar, style } from "@vanilla-extract/css"
 
 import { designTokens } from "src/styles/global.css"
 import { recipe } from "@vanilla-extract/recipes"
-
-const brandColor = createVar()
 
 export const card = style([
   box,
@@ -17,7 +17,7 @@ export const card = style([
 
     ":before": {
       content: "",
-      background: brandColor,
+      background: brandTheme.brandTokens.background,
       position: "absolute",
       top: "0",
       left: "0",
@@ -26,35 +26,6 @@ export const card = style([
     },
   },
 ])
-
-export const brandCard = recipe({
-  base: card,
-
-  variants: {
-    brand: {
-      facebook: {
-        vars: {
-          [brandColor]: designTokens.color.brand.facebook,
-        },
-      },
-      twitter: {
-        vars: {
-          [brandColor]: designTokens.color.brand.twitter,
-        },
-      },
-      instagram: {
-        vars: {
-          [brandColor]: designTokens.color.brand.instagram,
-        },
-      },
-      youtube: {
-        vars: {
-          [brandColor]: designTokens.color.brand.youtube,
-        },
-      },
-    },
-  },
-})
 
 export const header = style({
   display: "flex",

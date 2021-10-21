@@ -1,3 +1,4 @@
+import * as brandTheme from "src/styles/brand.css"
 import * as styles from "./social-followers-card.css"
 
 import { Brand } from "src/types"
@@ -7,6 +8,13 @@ import { Logo } from "src/components/logo"
 import { formatNumber } from "src/number-format"
 import { screenReaderOnly } from "src/styles/accessibility.css"
 import { useId } from "@react-aria/utils"
+
+const brandThemes: Record<Brand, string> = {
+  facebook: brandTheme.facebook,
+  twitter: brandTheme.twitter,
+  instagram: brandTheme.instagram,
+  youtube: brandTheme.youtube,
+}
 
 type Props = {
   brand: Brand
@@ -32,7 +40,7 @@ export function SocialFollowersCard({
   return (
     <article
       aria-labelledby={headingId}
-      className={styles.brandCard({ brand })}
+      className={`${styles.card} ${brandThemes[brand]}`}
     >
       <header className={styles.header}>
         <h2 id={headingId} className={screenReaderOnly}>

@@ -1,9 +1,7 @@
 import {
   createGlobalTheme,
-  createGlobalThemeContract,
   createThemeContract,
   globalStyle,
-  style,
 } from "@vanilla-extract/css"
 
 export const mainTokens = createGlobalTheme(":root", {
@@ -19,13 +17,6 @@ export const mainTokens = createGlobalTheme(":root", {
   color: {
     green: "hsl(163, 72%, 41%)",
     red: "hsl(356, 69%, 56%)",
-    brand: {
-      facebook: "hsl(208, 92%, 53%)",
-      twitter: "hsl(203, 89%, 53%)",
-      instagram:
-        "linear-gradient(225deg, hsl(329, 70%, 58%) 0%, hsl(5, 77%, 71%) 50.91%, hsl(37, 97%, 70%) 100%)",
-      youtube: "hsl(348, 97%, 39%)",
-    },
   },
   animation: {
     transitionDuration: "250ms",
@@ -50,7 +41,7 @@ const themeTokens = createThemeContract({
   },
 })
 
-createGlobalTheme(":root, body[data-user-theme=light]", themeTokens, {
+createGlobalTheme(":root", themeTokens, {
   color: {
     text: {
       bold: "hsl(230, 17%, 14%)",
@@ -67,7 +58,7 @@ createGlobalTheme(":root, body[data-user-theme=light]", themeTokens, {
   },
 })
 
-createGlobalTheme("body[data-user-theme=dark]", themeTokens, {
+createGlobalTheme("@media (prefers-color-scheme: dark)", themeTokens, {
   color: {
     text: {
       bold: "hsl(0, 0%, 100%)",

@@ -48,6 +48,7 @@ globalStyle(`${metric} a:focus`, {
 
 export const value = style({
   fontSize: designTokens.typography.fontSize.large,
+  color: designTokens.color.text.bold,
   fontWeight: 700,
   lineHeight: "1",
 })
