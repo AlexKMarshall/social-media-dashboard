@@ -15,10 +15,6 @@ export const mainTokens = createGlobalTheme(":root", {
       extraLarge: "3.5rem",
     },
   },
-  color: {
-    green: "hsl(163, 72%, 41%)",
-    red: "hsl(356, 69%, 56%)",
-  },
   animation: {
     transitionDuration: "250ms",
     transitionTimingFunction: "ease-in-out",
@@ -27,6 +23,8 @@ export const mainTokens = createGlobalTheme(":root", {
 
 const themeTokens = createThemeContract({
   color: {
+    green: null,
+    red: null,
     text: {
       bold: null,
       normal: null,
@@ -45,10 +43,12 @@ const themeTokens = createThemeContract({
 const lightTheme = {
   vars: assignVars(themeTokens, {
     color: {
+      green: "hsl(163, 88%, 26%)",
+      red: "hsl(356, 69%, 49%)",
       text: {
         bold: "hsl(230, 17%, 14%)",
         normal: "hsl(230, 12%, 44%)",
-        muted: "hsl(230, 22%, 74%)",
+        muted: "hsl(230, 22%, 52%)",
       },
       background: {
         main: "hsl(0, 0%, 100%)",
@@ -64,10 +64,12 @@ const lightTheme = {
 const darkTheme = {
   vars: assignVars(themeTokens, {
     color: {
+      green: "hsl(163, 72%, 41%)",
+      red: "hsl(356, 69%, 66%)",
       text: {
         bold: "hsl(0, 0%, 100%)",
-        normal: "hsl(228, 34%, 66%)",
-        muted: "hsl(228, 34%, 66%)",
+        normal: "hsl(228, 34%, 77%)",
+        muted: "hsl(228, 34%, 77%)",
       },
       background: {
         main: "hsl(230, 17%, 14%)",
@@ -92,7 +94,7 @@ globalStyle(":root[data-user-theme=dark]", darkTheme)
 
 export const designTokens = {
   ...mainTokens,
-  color: { ...mainTokens.color, ...themeTokens.color },
+  ...themeTokens,
 }
 
 globalStyle("html", {
