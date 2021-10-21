@@ -1,8 +1,8 @@
 import { globalStyle, style } from "@vanilla-extract/css"
 
 import { box } from "src/styles/layout.css"
+import { designTokens } from "src/styles/global.css"
 import { recipe } from "@vanilla-extract/recipes"
-import { themeVars } from "src/styles/global.css"
 
 export const card = style([
   box,
@@ -11,12 +11,11 @@ export const card = style([
     gridTemplateColumns: "repeat(2, auto)",
     gap: "1.5rem",
     borderRadius: "5px",
-    transitionProperty: "filter",
 
     selectors: {
       "&:hover, &:focus-within": {
         cursor: "pointer",
-        filter: "brightness(90%)",
+        filter: `brightness(${designTokens.color.background.cardHoverBrightness})`,
       },
 
       "&:focus-within": {
@@ -34,7 +33,7 @@ globalStyle(`${card} > *:nth-child(3), ${card} > *:nth-child(4)`, {
 })
 
 export const metric = style({
-  fontSize: themeVars.typography.fontSize.small,
+  fontSize: designTokens.typography.fontSize.small,
   fontWeight: 700,
 })
 
@@ -48,7 +47,7 @@ globalStyle(`${metric} a:focus`, {
 })
 
 export const value = style({
-  fontSize: themeVars.typography.fontSize.large,
+  fontSize: designTokens.typography.fontSize.large,
   fontWeight: 700,
   lineHeight: "1",
 })
@@ -59,17 +58,17 @@ export const change = recipe({
     flexDirection: "row",
     alignItems: "center",
     gap: "0.25rem",
-    fontSize: themeVars.typography.fontSize.extraSmall,
+    fontSize: designTokens.typography.fontSize.extraSmall,
     fontWeight: 700,
   },
 
   variants: {
     direction: {
       up: {
-        color: themeVars.color.green,
+        color: designTokens.color.green,
       },
       down: {
-        color: themeVars.color.red,
+        color: designTokens.color.red,
       },
     },
   },

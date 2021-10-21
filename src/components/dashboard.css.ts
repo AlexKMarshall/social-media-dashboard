@@ -1,7 +1,7 @@
 import { center, stack } from "src/styles/layout.css"
 import { globalStyle, style } from "@vanilla-extract/css"
 
-import { themeVars } from "src/styles/global.css"
+import { designTokens } from "src/styles/global.css"
 
 export const dashboard = style([center, stack({ size: "large" })])
 
@@ -24,16 +24,16 @@ globalStyle(`${header} > :nth-child(2)`, {
   "@media": {
     "screen and (max-width: 640px)": {
       borderTop: "1px solid",
-      borderColor: themeVars.color.divider,
+      borderColor: designTokens.color.divider,
     },
   },
 })
 
 export const h1 = style({
-  fontSize: themeVars.typography.fontSize.large,
-  color: themeVars.color.text.bold,
+  fontSize: designTokens.typography.fontSize.large,
+  color: designTokens.color.text.bold,
 })
 export const h2 = style({
-  fontSize: themeVars.typography.fontSize.medium,
-  color: themeVars.color.text.bold,
+  fontSize: designTokens.typography.fontSize.medium,
+  color: designTokens.color.text.bold,
 })

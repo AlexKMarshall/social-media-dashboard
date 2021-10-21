@@ -1,5 +1,5 @@
 import { slider, themeToggle } from "./theme-toggle.css"
-import { useMemo, useState } from "react"
+import { useLayoutEffect, useMemo, useState } from "react"
 
 function useToggle(initialValue = false) {
   const [state, setState] = useState(initialValue)
@@ -12,6 +12,11 @@ function useToggle(initialValue = false) {
 
 export function ThemeToggle(): JSX.Element {
   const { state: isPressed, toggle } = useToggle()
+
+  useLayoutEffect(() => {
+    const body = document.querySelector("body")
+    body?.setAttribute("data-user-theme", isPressed ? "dark" : "light")
+  }, [isPressed])
 
   return (
     <button

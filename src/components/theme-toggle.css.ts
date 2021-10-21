@@ -1,20 +1,26 @@
 import { createVar, style } from "@vanilla-extract/css"
 
 import { calc } from "@vanilla-extract/css-utils"
-import { themeVars } from "src/styles/global.css"
+import { designTokens } from "src/styles/global.css"
 
 export const themeToggle = style({
   border: "none",
   background: "none",
-  fontSize: themeVars.typography.fontSize.small,
+  fontSize: designTokens.typography.fontSize.small,
   fontWeight: 700,
-  color: themeVars.color.text.muted,
+  color: designTokens.color.text.muted,
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   gap: "0.75rem",
   paddingBlock: "1rem",
   paddingInline: 0,
+
+  selectors: {
+    "&[aria-pressed=true]": {
+      color: designTokens.color.text.bold,
+    },
+  },
 })
 
 const sliderHeight = createVar()
@@ -46,7 +52,6 @@ export const slider = style({
     left: 0,
     backgroundImage: "linear-gradient(225deg, #40DB82 0%, #388FE7 98.02%)",
     opacity: 0,
-    transitionProperty: "opacity",
   },
 
   // the slider thumb
@@ -57,9 +62,8 @@ export const slider = style({
     right: sliderPadding,
     width: thumbSize,
     height: thumbSize,
-    backgroundColor: themeVars.color.background.decoration,
+    backgroundColor: designTokens.color.background.decoration,
     borderRadius: "50%",
-    transitionProperty: "transform",
   },
 
   selectors: {

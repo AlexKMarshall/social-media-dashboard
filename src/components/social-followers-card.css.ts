@@ -1,8 +1,8 @@
 import { box, stack } from "src/styles/layout.css"
 import { createVar, style } from "@vanilla-extract/css"
 
+import { designTokens } from "src/styles/global.css"
 import { recipe } from "@vanilla-extract/recipes"
-import { themeVars } from "src/styles/global.css"
 
 const brandColor = createVar()
 
@@ -34,22 +34,22 @@ export const brandCard = recipe({
     brand: {
       facebook: {
         vars: {
-          [brandColor]: themeVars.color.brand.facebook,
+          [brandColor]: designTokens.color.brand.facebook,
         },
       },
       twitter: {
         vars: {
-          [brandColor]: themeVars.color.brand.twitter,
+          [brandColor]: designTokens.color.brand.twitter,
         },
       },
       instagram: {
         vars: {
-          [brandColor]: themeVars.color.brand.instagram,
+          [brandColor]: designTokens.color.brand.instagram,
         },
       },
       youtube: {
         vars: {
-          [brandColor]: themeVars.color.brand.youtube,
+          [brandColor]: designTokens.color.brand.youtube,
         },
       },
     },
@@ -67,7 +67,7 @@ export const socialHandle = style({
   textDecoration: "none",
   fontWeight: 700,
   color: "inherit",
-  fontSize: themeVars.typography.fontSize.extraSmall,
+  fontSize: designTokens.typography.fontSize.extraSmall,
 })
 
 export const followers = style({
@@ -78,14 +78,14 @@ export const followers = style({
 })
 
 export const value = style({
-  fontSize: themeVars.typography.fontSize.extraLarge,
+  fontSize: designTokens.typography.fontSize.extraLarge,
   fontWeight: 700,
-  color: themeVars.color.text.bold,
+  color: designTokens.color.text.bold,
   lineHeight: "1",
 })
 
 export const metric = style({
-  fontSize: themeVars.typography.fontSize.extraSmall,
+  fontSize: designTokens.typography.fontSize.extraSmall,
   textTransform: "uppercase",
   letterSpacing: "5px",
 })
@@ -96,17 +96,17 @@ export const footer = recipe({
     flexDirection: "row",
     alignItems: "center",
     gap: "0.25rem",
-    fontSize: themeVars.typography.fontSize.extraSmall,
+    fontSize: designTokens.typography.fontSize.extraSmall,
     fontWeight: 700,
   },
 
   variants: {
     direction: {
       up: {
-        color: themeVars.color.green,
+        color: designTokens.color.green,
       },
       down: {
-        color: themeVars.color.red,
+        color: designTokens.color.red,
       },
     },
   },

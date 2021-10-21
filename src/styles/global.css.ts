@@ -1,6 +1,12 @@
-import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css"
+import {
+  createGlobalTheme,
+  createGlobalThemeContract,
+  createThemeContract,
+  globalStyle,
+  style,
+} from "@vanilla-extract/css"
 
-export const themeVars = createGlobalTheme(":root", {
+export const mainTokens = createGlobalTheme(":root", {
   typography: {
     fontSize: {
       extraSmall: "0.75rem",
@@ -11,11 +17,6 @@ export const themeVars = createGlobalTheme(":root", {
     },
   },
   color: {
-    text: {
-      bold: "hsl(230, 17%, 14%)",
-      normal: "hsl(230, 12%, 44%)",
-      muted: "hsl(230, 22%, 74%)",
-    },
     green: "hsl(163, 72%, 41%)",
     red: "hsl(356, 69%, 56%)",
     brand: {
@@ -25,12 +26,6 @@ export const themeVars = createGlobalTheme(":root", {
         "linear-gradient(225deg, hsl(329, 70%, 58%) 0%, hsl(5, 77%, 71%) 50.91%, hsl(37, 97%, 70%) 100%)",
       youtube: "hsl(348, 97%, 39%)",
     },
-    background: {
-      main: "hsl(0, 0%, 100%)",
-      card: "hsl(0, 0%, 95%)",
-      decoration: "hsl(225, 100%, 98%)",
-    },
-    divider: "hsl(230, 19%, 60%)",
   },
   animation: {
     transitionDuration: "250ms",
@@ -38,14 +33,70 @@ export const themeVars = createGlobalTheme(":root", {
   },
 })
 
+const themeTokens = createThemeContract({
+  color: {
+    text: {
+      bold: null,
+      normal: null,
+      muted: null,
+    },
+    background: {
+      main: null,
+      card: null,
+      cardHoverBrightness: null,
+      decoration: null,
+    },
+    divider: null,
+  },
+})
+
+createGlobalTheme(":root, body[data-user-theme=light]", themeTokens, {
+  color: {
+    text: {
+      bold: "hsl(230, 17%, 14%)",
+      normal: "hsl(230, 12%, 44%)",
+      muted: "hsl(230, 22%, 74%)",
+    },
+    background: {
+      main: "hsl(0, 0%, 100%)",
+      card: "hsl(0, 0%, 95%)",
+      cardHoverBrightness: "0.9",
+      decoration: "hsl(225, 100%, 98%)",
+    },
+    divider: "hsl(230, 19%, 60%)",
+  },
+})
+
+createGlobalTheme("body[data-user-theme=dark]", themeTokens, {
+  color: {
+    text: {
+      bold: "hsl(0, 0%, 100%)",
+      normal: "hsl(228, 34%, 66%)",
+      muted: "hsl(228, 34%, 66%)",
+    },
+    background: {
+      main: "hsl(230, 17%, 14%)",
+      card: "hsl(228, 28%, 20%)",
+      cardHoverBrightness: "1.3",
+      decoration: "hsl(232, 19%, 15%)",
+    },
+    divider: "hsla(228, 25%, 27%)",
+  },
+})
+
+export const designTokens = {
+  ...mainTokens,
+  color: { ...mainTokens.color, ...themeTokens.color },
+}
+
 globalStyle("html", {
   fontFamily: "Inter, sans-serif",
-  color: themeVars.color.text.normal,
+  color: designTokens.color.text.normal,
 })
 
 globalStyle("body", {
   position: "relative",
-  backgroundColor: themeVars.color.background.main,
+  backgroundColor: designTokens.color.background.main,
 })
 
 globalStyle("body::before", {
@@ -55,11 +106,11 @@ globalStyle("body::before", {
   left: 0,
   right: 0,
   height: "25vh",
-  backgroundColor: themeVars.color.background.decoration,
+  backgroundColor: designTokens.color.background.decoration,
   zIndex: -1,
 })
 
 globalStyle("*, *::after, *::before", {
-  transitionDuration: themeVars.animation.transitionDuration,
-  transitionTimingFunction: themeVars.animation.transitionTimingFunction,
+  transitionDuration: designTokens.animation.transitionDuration,
+  transitionTimingFunction: designTokens.animation.transitionTimingFunction,
 })

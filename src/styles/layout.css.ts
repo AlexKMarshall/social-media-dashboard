@@ -1,10 +1,10 @@
+import { designTokens } from "./global.css"
 import { recipe } from "@vanilla-extract/recipes"
 import { style } from "@vanilla-extract/css"
-import { themeVars } from "./global.css"
 
 export const box = style({
   padding: "1.5rem",
-  backgroundColor: themeVars.color.background.card,
+  backgroundColor: designTokens.color.background.card,
 })
 
 export const stack = recipe({
