@@ -27,9 +27,10 @@ export const themeVars = createGlobalTheme(":root", {
     },
     background: {
       main: "hsl(0, 0%, 100%)",
-      card: "",
+      card: "hsl(0, 0%, 95%)",
       decoration: "hsl(225, 100%, 98%)",
     },
+    divider: "hsl(230, 19%, 60%)",
   },
   animation: {
     transitionDuration: "250ms",

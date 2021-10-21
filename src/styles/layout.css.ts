@@ -1,9 +1,10 @@
 import { recipe } from "@vanilla-extract/recipes"
 import { style } from "@vanilla-extract/css"
+import { themeVars } from "./global.css"
 
 export const box = style({
   padding: "1.5rem",
-  backgroundColor: "hsl(0, 0%, 95%)",
+  backgroundColor: themeVars.color.background.card,
 })
 
 export const stack = recipe({

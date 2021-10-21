@@ -13,6 +13,8 @@ export const themeToggle = style({
   flexDirection: "row",
   alignItems: "center",
   gap: "0.75rem",
+  paddingBlock: "1rem",
+  paddingInline: 0,
 })
 
 const sliderHeight = createVar()
