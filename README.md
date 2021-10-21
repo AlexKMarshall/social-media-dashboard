@@ -35,72 +35,38 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: https://social-media-dashboard-green-nine.vercel.app/
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
+- Semantic markup
+- CSS Grid, Flexbox and Custom Properties
+- Typescript
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [Vanilla Extract](https://vanilla-extract.style/) - Typescript zero-runtime styles
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This is the first time I built a project with screen-reader testing from the beginning. Using a screen-reader I made sure the markup was comprehensible and navigable before adding any styles and interactivity. The theme toggle button is styled using the `aria-pressed` state to ensure styling remains linked with the accessible markup. I chose appropriate heading levels and landmark regions to allow easy navigation through the content. At all times I repeatedly tested with the keyboard to ensure focus order and focus stylings were in place.
 
-To see how you can add code snippets, see below:
+Some of the decisions made by the designer resulted in some accessibility audit fails. I adjusted the design so the base font-size was 1rem = 16px. Some of the colors were too low contrast. I used the Wave Accessibility browser plugin to take the failing colours and adjust their saturation and lightness until they met WCAG guidlines while still staying as close as possible to the designers original colour choices. This was made much easier by using CSS Properties for design tokens, so colours could be changed in a single place. This made it easier to adjust the contrast for the different themes too.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+I used NextJs to build this. While this site is not full stack, and just uses mock data, the components are the same as they would be in a production app. As NextJS will statically generate the initial render this adds challenges for theming. The colour theme for a site should respect the user's preferences as defined in `@media (prefers-color-scheme)`, and if the user has selected a different preference for the site, this should be stored for next time. But on a static site, neither of these things are known at build time so without extra work the user may see a flash of the incorrect theme.
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+To solve this I added a tiny inline script that will run before the html is parsed on the client and set a property on the `document` element based on user preferences from localstorage or system settings. This will not block rendering for long (unlike full rehydration of the app) and means the chosen theme will be available as soon as the browser paints. To avoid the toggle switch being initially in the wrong position when statically rendered, I've wrapped it in a custom `<ClientSideOnly>` component so it will not render on the server. This means it will only display once the user preference is known, and not flash the wrong state.
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉")
-}
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
-
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+Using Vanilla Extract for CSS made it very straightforward to use CSS Custom Properties throughout the project without having to worry about naming clashes, or typing errors. It makes switching themes significantly easier too, and as it compiles to pure CSS at build-time, brings no run-time cost.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [The Quest for the Perfect Dark Mode](https://www.joshwcomeau.com/react/dark-mode/) and [Create a user controlled dark or light mode](https://piccalil.li/tutorial/create-a-user-controlled-dark-or-light-mode/)- Josh and Andy's posts were very helpful for creating a robust theming solution
+- [Screen Reader Basics: VoiceOver -- A11ycasts #07](https://www.youtube.com/watch?v=5R-6WvAihms) - This helped me in understanding the basics of naviating using a screen reader
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Alex Marshall](https://github.com/AlexKMarshall)
+- Frontend Mentor - [@AlexKMarshall](https://www.frontendmentor.io/profile/AlexKMarshall)
+- Twitter - [@AlexKMarshall1](https://twitter.com/alexkmarshall1)
