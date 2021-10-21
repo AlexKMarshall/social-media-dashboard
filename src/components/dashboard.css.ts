@@ -3,7 +3,13 @@ import { globalStyle, style } from "@vanilla-extract/css"
 
 import { designTokens } from "src/styles/global.css"
 
-export const dashboard = style([center, stack({ size: "large" })])
+export const dashboard = style([
+  center,
+  stack({ size: "large" }),
+  {
+    paddingBlock: "2rem",
+  },
+])
 
 export const header = style({
   display: "flex",

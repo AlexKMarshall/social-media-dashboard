@@ -58,7 +58,7 @@ createGlobalTheme(":root", themeTokens, {
   },
 })
 
-createGlobalTheme("@media (prefers-color-scheme: dark)", themeTokens, {
+createGlobalTheme("body[data-user-theme=dark]", themeTokens, {
   color: {
     text: {
       bold: "hsl(0, 0%, 100%)",
@@ -104,4 +104,5 @@ globalStyle("body::before", {
 globalStyle("*, *::after, *::before", {
   transitionDuration: designTokens.animation.transitionDuration,
   transitionTimingFunction: designTokens.animation.transitionTimingFunction,
+  transitionProperty: "opacity, transform, color, background-color",
 })
