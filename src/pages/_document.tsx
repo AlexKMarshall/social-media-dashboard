@@ -21,8 +21,11 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=optional"
             rel="stylesheet"
           />
+          <script
+            dangerouslySetInnerHTML={{ __html: blockingSetInitialColorTheme }}
+          />
         </Head>
-        <body data-user-theme="dark">
+        <body>
           <Main />
           <NextScript />
         </body>
@@ -32,3 +35,22 @@ class MyDocument extends Document {
 }
 
 export default MyDocument
+
+const blockingSetInitialColorTheme = `(function() {
+  ${setInitialColorTheme.toString()}
+  setInitialColorTheme()
+})()`
+
+function setInitialColorTheme() {
+  function getInitialColorTheme() {
+    const persistedColorPreference =
+      window.localStorage.getItem("color-preference")
+
+    if (persistedColorPreference) return persistedColorPreference
+  }
+
+  const colorTheme = getInitialColorTheme()
+  if (colorTheme) {
+    document.documentElement.dataset.userTheme = colorTheme
+  }
+}

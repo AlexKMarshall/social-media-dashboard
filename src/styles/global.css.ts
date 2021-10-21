@@ -82,7 +82,7 @@ const darkTheme = {
 
 globalStyle(":root", lightTheme)
 
-globalStyle(":root:not([data-user-theme=light])", {
+globalStyle(`:root:not([data-user-theme=light])`, {
   "@media": {
     "screen and (prefers-color-scheme: dark)": darkTheme,
   },
@@ -121,3 +121,15 @@ globalStyle("*, *::after, *::before", {
   transitionTimingFunction: designTokens.animation.transitionTimingFunction,
   transitionProperty: "opacity, transform, color, background-color",
 })
+
+function toSnakeCase(input: string): string {
+  return input
+    .split("")
+    .map((character, index) => {
+      const prefix = index > 0 ? "_" : ""
+      return character === character.toUpperCase()
+        ? `${prefix}${character}`
+        : character
+    })
+    .join("")
+}

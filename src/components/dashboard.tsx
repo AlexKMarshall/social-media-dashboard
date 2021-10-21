@@ -2,6 +2,7 @@ import { dashboard, h1, h2, header } from "./dashboard.css"
 import { followerData, metricData } from "src/data"
 import { fullWidth, grid, stack } from "src/styles/layout.css"
 
+import { ClientSideOnly } from "./client-side-only"
 import { MetricCard } from "./metric-card"
 import { SocialFollowersCard } from "./social-followers-card"
 import { ThemeToggle } from "./theme-toggle"
@@ -21,7 +22,9 @@ export function Dashboard() {
           <h1 className={h1}>Social Media Dashboard</h1>
           <p>Total Followers: {totalFollowers.toLocaleString()}</p>
         </div>
-        <ThemeToggle />
+        <ClientSideOnly>
+          <ThemeToggle />
+        </ClientSideOnly>
       </header>
       <div className={grid}>
         {followerData.map((f) => (
