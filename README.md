@@ -11,12 +11,8 @@ This is a solution to the [Social media dashboard with theme switcher challenge 
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -34,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Frontend Mentor Solution](https://www.frontendmentor.io/solutions/intrinsic-grid-design-using-react-nextjs-and-vanillaextract-Zurmx2HTe)
 - Live Site URL: https://social-media-dashboard-green-nine.vercel.app/
 
 ## My process
